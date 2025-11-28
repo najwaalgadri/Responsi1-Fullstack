@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Hotel Pelita</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <h4 class="p-3">Dashboard</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Data Hotel Pelita</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Data Hotel Pelita</h1>
+                    <button class="btn btn-primary" id="toggleSidebar">Lihat Dashboard</button>
+                </div>
+
+                <!-- Form Tambah Data -->
+                <div class="mb-4">
+                    <h3>Tambah Kamar</h3>
+                    <form id="addForm">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="namaKamar" placeholder="Nama Kamar" required>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="tipeKamar" placeholder="Tipe Kamar" required>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="number" class="form-control" id="harga" placeholder="Harga" required>
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control" id="status">
+                                    <option value="Tersedia">Tersedia</option>
+                                    <option value="Tidak Tersedia">Tidak Tersedia</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success">Tambah</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tabel Data -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama Kamar</th>
+                                <th>Tipe Kamar</th>
+                                <th>Harga</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Kamar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editId">
+                        <div class="mb-3">
+                            <label for="editNamaKamar" class="form-label">Nama Kamar</label>
+                            <input type="text" class="form-control" id="editNamaKamar" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTipeKamar" class="form-label">Tipe Kamar</label>
+                            <input type="text" class="form-control" id="editTipeKamar" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editHarga" class="form-label">Harga</label>
+                            <input type="number" class="form-control" id="editHarga" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editStatus" class="form-label">Status</label>
+                            <select class="form-control" id="editStatus">
+                                <option value="Tersedia">Tersedia</option>
+                                <option value="Tidak Tersedia">Tidak Tersedia</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Hapus -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus Kamar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus kamar ini?</p>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
